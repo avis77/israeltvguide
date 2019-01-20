@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
       qs:{jspName:'EPGResponse.jsp'}
   });
   const data = JSON.parse(result.body.toString('utf-8'));
-console.log(`got ${data.programs.1.ProgramName}`)
+console.log(`got ${data.programs[1].ProgramName}`)
   res.send('Hello World!')
   
 })

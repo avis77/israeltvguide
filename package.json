@@ -1,0 +1,28 @@
+{
+  "name": "israeltvguide",
+  "version": "1.0.0",
+  "description": "israel tv guide",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "request": "^2.72.0",
+    "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "avis",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avis77/israeltvguide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avis77/israeltvguide/issues"
+  },
+  "homepage": "https://github.com/avis77/israeltvguide#readme"
+}

@@ -3,7 +3,7 @@ const app = express()
 const port = process.env.PORT || 5000
 
 app.get('/', (req, res) => {
-  console.log("got %j",JSON.stringify(req, null, 2))
+  console.log(req.body)
   var request = require('sync-request');
   var result = request('GET','https://www.mako.co.il/AjaxPage',{
       qs:{jspName:'EPGResponse.jsp'}

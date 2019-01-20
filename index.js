@@ -5,10 +5,10 @@ const port = process.env.PORT || 5000
 app.get('/', (req, res) => {
   console.log(`got ${req} ${req}`)
   var request = require('sync-request');
-  var res = request('GET','https://www.mako.co.il/AjaxPage',{
+  var result = request('GET','https://www.mako.co.il/AjaxPage',{
       qs:{jspName:'EPGResponse.jsp'}
   });
-  const data = JSON.parse(res.body.toString('utf-8'));
+  const data = JSON.parse(result.body.toString('utf-8'));
 console.log(`got ${data}`)
   res.send('Hello World!')
   

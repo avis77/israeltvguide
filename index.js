@@ -35,8 +35,10 @@ function get12PrimeTime(timeH) {
   console.log(`got ${data.programs[1].ProgramName}`)
   var retValue = ""
   for (var i = 0; i < data.programs.length; i++){
-    if(data.programs[i].DisplayStartTime.startsWith(timeH)){
-      retValue += data.programs[i].ProgramName+" will start at "+data.programs[i].DisplayStartTime+".\n"
+    if(data.programs[i].day=== "הערב"){
+      if(data.programs[i].DisplayStartTime.startsWith(timeH)){
+        retValue += data.programs[i].ProgramName+" will start at "+data.programs[i].DisplayStartTime+".\n"
+      }
     }
   }
   if(retValue.length==0){

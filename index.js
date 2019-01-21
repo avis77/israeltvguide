@@ -62,6 +62,9 @@ curl.setHeaders([
   var data = body.substring(startIndex)
   var endIndex = data.indexOf(";")-1
   data = data.substring(0,endIndex)+"}"
+  data = data.substring(data.indexOf("\"0\"")+5)
+  data = data.seubstring(0,data.indexOf("\"1\"")-1)
+  console.log(data)
   const dataJson = JSON.parse(data)
 
   for (var i = 0; i < data.Content.PageGrid[0].broadcastWeek[0].broadcastDayList[0].shows.length; i++){

@@ -7,13 +7,23 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('get', conv => {
-  conv.ask(`The last thing I told you was ${conv.randomize.last}`)
-  conv.ask(new Randomization(
-    'How are you?',
-    'Are you having a good day?',
-  ))
+  conv.ask(`on prime time today are`)
+  conv.ask()
 })
-
+function pet12PrimeTime() {
+  var request = require('sync-request');
+  var result = request('GET','https://www.mako.co.il/AjaxPage',{
+      qs:{jspName:'EPGResponse.jsp'}
+  });
+  const data = JSON.parse(result.body.toString('utf-8'));
+  console.log(`got ${data.programs[1].ProgramName}`)
+  for (var i = 0; i < data.programs.length; i++){
+    if(data.programs[i].DisplayStartTime.startsWith("21")){
+      return data.programs[i].ProgramName
+    }
+  }
+  
+}
 // app.get('/', (req, res) => {
 //   console.log('get')
 //   console.log(req.query)

@@ -11,9 +11,9 @@ app.intent('get', conv => {
   conv.ask('on cahnel 12 '+get12PrimeTime("21"))
 })
 
-app.intent('get at', conv => {
+app.intent('whats at', (conv, { time }) => {
   conv.ask(`today on prime time.\n`)
-  conv.ask('on cahnel 12 '+get12PrimeTime("21"))
+  conv.ask('on cahnel 12 '+get12PrimeTime(time))
 })
 
 app.intent('Default Welcome Intent', conv => {

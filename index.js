@@ -25,7 +25,7 @@ app.post('/', (req, res) => {
   const { WebhookClient } = require('dialogflow-fulfillment');
 
   //Create an instance
-  const agent = new WebhookClient({request: request, response: response});
+  const agent = new WebhookClient({request: req, response: res});
 
   function welcome(agent) {
     agent.add(`hi this is israel tv guide`);

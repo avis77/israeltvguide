@@ -52,7 +52,7 @@ function get12PrimeTime(timeH) {
 
 function get13(timeH) {
   
-  
+const https = require('https');  
 https.get('http://reshet.tv/general/tv-guide/', (resp) => {
 let data = '';
 // A chunk of data has been recieved.

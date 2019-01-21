@@ -64,8 +64,8 @@ curl.setHeaders([
   data = data.substring(0,endIndex)+"}"
   const dataJson = JSON.parse(data)
 
-  for (var i = 0; i < data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows.length; i++){
-      if(data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].start_time.startsWith(timeH)){
+  for (var i = 0; i < data.Content.PageGrid[0].broadcastWeek.0.broadcastDayList[0].shows.length; i++){
+      if(data.Content.PageGrid[0].broadcastWeek.0.broadcastDayList[0].shows[i].start_time.startsWith(timeH)){
         retValue += data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].title+" will start at "+data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].start_time+".\n"
       }
   }

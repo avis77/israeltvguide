@@ -54,6 +54,7 @@ function get13(timeH) {
   var request = require('sync-request');
   var result = request('GET','https://reshet.tv/general/tv-guide/');
   var data = result.body.toString('utf-8');
+  console.log(data)
   var startIndex = data.indexOf("data_query = {")+12
   data = data.substring(startIndex)
   var endIndex = data.indexOf(";")+12

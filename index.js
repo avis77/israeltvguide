@@ -13,7 +13,7 @@ app.intent('get', conv => {
 
 app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
-    time = '0${time}'
+    time = "0"+time
   }
   conv.ask(`today at ${time}.\n`)
   conv.ask('on cahnel 12 '+get12PrimeTime(time))

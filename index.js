@@ -6,7 +6,7 @@ const { dialogflow } = require('actions-on-google')
 const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
-app.intent('get', conv => {
+app.intent('whats on prime time', conv => {
   conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21"))
 })
 

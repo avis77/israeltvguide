@@ -7,23 +7,22 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('get', conv => {
-  conv.ask(`today on prime time.\n`)
-  conv.ask('on cahnel 12 '+get12PrimeTime("21"))
+  conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21"))
 })
 
 app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
     time = "0"+time
   }
-  conv.ask(`today at ${time}.\n`)
+  conv.ask('today at ${time}.\n')
   conv.ask('on cahnel 12 '+get12PrimeTime(time))
 })
 
 app.intent('Default Welcome Intent', conv => {
-  conv.ask(`hi this is israel tv guide`)
+  conv.ask('hi this is israel tv guide')
 })
 app.fallback((conv) => {
-  conv.ask(`like a cow, what do you want?`);
+  conv.ask('like a cow, what do you want?');
 })
 
 

@@ -63,7 +63,7 @@ curl.setHeaders([
   var endIndex = data.indexOf(";")-1
   data = data.substring(0,endIndex)+"}"
   data = data.substring(data.indexOf("\"0\"")+5)
-  data = data.seubstring(0,data.indexOf("\"1\"")-1)
+  data = data.substring(0,data.indexOf("\"1\"")-1)
   console.log(data)
   const dataJson = JSON.parse(data)
 

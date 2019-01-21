@@ -51,19 +51,14 @@ function get12PrimeTime(timeH) {
 }
 
 function get13(timeH) {
-
-  const curl = new (require( 'curl-request' ))();
- 
-curl.setHeaders([
-    'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
-])
-.get('http://reshet.tv/general/tv-guide/')
-.then(({statusCode, body, headers}) => {
-    console.log(statusCode, body, headers)
-})
-.catch((e) => {
-    console.log(e);
-});
+curl = require('node-curl');
+  curl('reshet.tv/general/tv-guide/', function(err) {
+    console.info(this.status);
+    console.info('-----');
+    console.info(this.body);
+    console.info('-----');
+    console.info(this.info('SIZE_DOWNLOAD'));
+  });
 //   var request = require('sync-request');
 //   var result = request('GET','http://reshet.tv/general/tv-guide/',{
 //   headers: {

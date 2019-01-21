@@ -8,7 +8,7 @@ express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
   conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21"))
-  get13()
+  get13(conv,"21")
 })
 
 app.intent('whats at', (conv, {time}) => {
@@ -50,10 +50,10 @@ function get12PrimeTime(timeH) {
   }
 }
 
-function get13(timeH) {
+function get13(conv,timeH) {
 const curl = new (require( 'curl-request' ))();
  
-await curl.setHeaders([
+curl.setHeaders([
     'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
 ])
 .get('https://reshet.tv/general/tv-guide/')
@@ -70,9 +70,9 @@ await curl.setHeaders([
       }
   }
   if(retValue.length==0){
-    return "nothing statrt at "+timeH
+    conv.ask( "nothing statrt at "+timeH)
   }else{
-    return retValue
+    conv.ask(retValue)
   }
   
 })

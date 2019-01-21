@@ -7,8 +7,8 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('get', conv => {
-  conv.ask(`on prime time today are`)
-  conv.ask()
+  conv.ask(`today on prime time.`)
+  conv.ask('on cahnel 12 '+pet12PrimeTime())
 })
 function pet12PrimeTime() {
   var request = require('sync-request');

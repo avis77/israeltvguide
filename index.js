@@ -79,7 +79,7 @@ function get13(timeH) {
 
   var today = new Date();
   var diffDays = Math.floor((today - chanel13CacheDate) / 86400000); // days
-  if(difDays>1 || chanel13Cache == null){
+  if(diffDays>1 || chanel13Cache == null){
     refresh13cache()
   }
   var dayNow = today.getUTCDate();

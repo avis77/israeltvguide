@@ -69,7 +69,7 @@ curl.setHeaders([
 
   var today = new Date();
   var dayNow = today.getUTCDate();
-
+  var retValue = ""
   for (var i = 0; i < dataJson.broadcastDayList.length; i++){
     if(dataJson.broadcastDayList[i].shortDate.startsWith(dayNow)){
       for (var x = 0; x < dataJson.broadcastDayList[i].shows.length; x++){

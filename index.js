@@ -77,6 +77,7 @@ curl.setHeaders([
           retValue += data.broadcastDayList[i].shows[x].title+" will start at "+data.broadcastDayList[i].shows[x].start_time+".\n"
         }
       }
+    }
   }
     
   console.log(retValue)

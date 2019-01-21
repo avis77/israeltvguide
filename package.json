@@ -10,6 +10,8 @@
   "dependencies": {
     "express": "^4.13.4",
     "sync-request": "6.0.0"
+    "dialogflow": "^0.6.0",
+    "dialogflow-fulfillment": "^0.5.0",
   },
   "devDependencies": {
   },

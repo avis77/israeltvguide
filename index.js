@@ -8,6 +8,7 @@ express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
   conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21"))
+  get13()
 })
 
 app.intent('whats at', (conv, {time}) => {
@@ -49,3 +50,14 @@ function get12PrimeTime(timeH) {
   }
 }
 
+function get13(timeH) {
+  var request = require('sync-request');
+  var result = request('GET','https://reshet.tv/general/tv-guide/');
+  var data = result.body.toString('utf-8');
+  var startIndex = data.indexOf("data_query = {")+12
+  data = data.substring(startIndex)
+  var endIndex = data.indexOf(";")+12
+  data = data.substring(0,endIndex)
+  console.log(data)
+  const dataJson = JSON.parse(data)
+}

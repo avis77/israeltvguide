@@ -14,15 +14,17 @@ app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
     time = "0"+time
   }
-  conv.ask('today at ${time}.\n')
-  conv.ask('on cahnel 12 '+get12PrimeTime(time))
+  conv.ask("today at "+time+".\non cahnel 12 "+get12PrimeTime(time))
 })
 
 app.intent('Default Welcome Intent', conv => {
   conv.ask('hi this is israel tv guide')
 })
 app.fallback((conv) => {
-  conv.ask('like a cow, what do you want?');
+  conv.ask('kapara, what do you want?');
+  conv.ask('command that i know are');
+  conv.ask('whats on prime time');
+  conv.ask('whats at ');
 })
 
 

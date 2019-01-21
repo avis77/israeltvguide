@@ -51,14 +51,30 @@ function get12PrimeTime(timeH) {
 }
 
 function get13(timeH) {
-  var request = require('sync-request');
-  var result = request('GET','http://reshet.tv/general/tv-guide/');
-  var data = result.body.toString('utf-8');
-  console.log(data)
-  var startIndex = data.indexOf("data_query = {")+12
-  data = data.substring(startIndex)
-  var endIndex = data.indexOf(";")+12
-  data = data.substring(0,endIndex)
-  console.log(data)
-  const dataJson = JSON.parse(data)
+  
+  
+https.get('http://reshet.tv/general/tv-guide/', (resp) => {
+let data = '';
+// A chunk of data has been recieved.
+resp.on('data', (chunk) => {
+data += chunk;
+});
+// The whole response has been received. Print out the result.
+resp.on('end', () => {
+console.log(JSON.parse(data).explanation);
+});
+}).on("error", (err) => {
+console.log("Error: " + err.message);
+});
+
+//   var request = require('sync-request');
+//   var result = request('GET','http://reshet.tv/general/tv-guide/');
+//   var data = result.body.toString('utf-8');
+//   console.log(data)
+//   var startIndex = data.indexOf("data_query = {")+12
+//   data = data.substring(startIndex)
+//   var endIndex = data.indexOf(";")+12
+//   data = data.substring(0,endIndex)
+//   console.log(data)
+//   const dataJson = JSON.parse(data)
 }

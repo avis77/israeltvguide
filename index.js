@@ -53,19 +53,28 @@ function get12PrimeTime(timeH) {
 function get13(timeH) {
 const curl = new (require( 'curl-request' ))();
  
-curl.setHeaders([
+await curl.setHeaders([
     'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
 ])
 .get('https://reshet.tv/general/tv-guide/')
 .then(({statusCode, body, headers}) => {
-//     console.log(statusCode, body, headers)\
   var startIndex = body.indexOf("data_query = {")+12
   var data = body.substring(startIndex)
   var endIndex = data.indexOf(";")-1
   data = data.substring(0,endIndex)+"}"
-  console.log(data)
   const dataJson = JSON.parse(data)
 
+  for (var i = 0; i < data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows.length; i++){
+      if(data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].start_time.startsWith(timeH)){
+        retValue += data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].title+" will start at "+data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].start_time+".\n"
+      }
+  }
+  if(retValue.length==0){
+    return "nothing statrt at "+timeH
+  }else{
+    return retValue
+  }
+  
 })
 .catch((e) => {
     console.log(e);

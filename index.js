@@ -58,27 +58,17 @@ curl.setHeaders([
 ])
 .get('https://reshet.tv/general/tv-guide/')
 .then(({statusCode, body, headers}) => {
-    console.log(statusCode, body, headers)
+//     console.log(statusCode, body, headers)\
+  var startIndex = body.indexOf("data_query = {")+12
+  data = body.substring(startIndex)
+  var endIndex = data.indexOf(";")+12
+  data = data.substring(0,endIndex)
+  console.log(data)
+  const dataJson = JSON.parse(data)
+
 })
 .catch((e) => {
     console.log(e);
 });
-//   var request = require('sync-request');
-//   var result = request('GET','http://reshet.tv/general/tv-guide/',{
-//   headers: {
-//     "user-agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0",
-//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-//     "accept-language": "en-US,en;q=0.5",
-//     "accept-encoding": "gzip, deflate",
-//     "connection": "keep-alive",
-//     "upgrade-insecure-requests": "1"
-//   }});
-//   var data = result.body.toString('utf-8');
-//   console.log(data)
-//   var startIndex = data.indexOf("data_query = {")+12
-//   data = data.substring(startIndex)
-//   var endIndex = data.indexOf(";")+12
-//   data = data.substring(0,endIndex)
-//   console.log(data)
-//   const dataJson = JSON.parse(data)
+
 }

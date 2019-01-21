@@ -101,7 +101,7 @@ function get13(timeH) {
     }
     return "nothing statrt at "+timeH
   }else{
-    creturn retValue
+    return retValue
   }
 
 }

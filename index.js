@@ -64,14 +64,22 @@ curl.setHeaders([
   data = data.substring(0,endIndex)+"}"
   data = data.substring(data.indexOf("\"0\"")+4)
   data = data.substring(0,data.indexOf("\"1\"")-1)
-  console.log(data)
+  
   const dataJson = JSON.parse(data)
 
-  for (var i = 0; i < data.Content.PageGrid[0].broadcastWeek[0].broadcastDayList[0].shows.length; i++){
-      if(data.Content.PageGrid[0].broadcastWeek[0].broadcastDayList[0].shows[i].start_time.startsWith(timeH)){
-        retValue += data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].title+" will start at "+data.Content.PageGrid.broadcastWeek[0].broadcastDayList[0].shows[i].start_time+".\n"
+  var today = new Date();
+  var dayNow = today.getUTCDate();
+
+  for (var i = 0; i < data.broadcastDayList.length; i++){
+    if(data.broadcastDayList[i].shortDate.startsWith(dayNow)){
+      for (var x = 0; x < data.broadcastDayList[i].shows.length; x++){
+        if(data.broadcastDayList[i].shows[x].start_time.startsWith(timeH)){
+          retValue += data.broadcastDayList[i].shows[x].title+" will start at "+data.broadcastDayList[i].shows[x].start_time+".\n"
+        }
       }
   }
+    
+  console.log(retValue)
   if(retValue.length==0){
     conv.ask( "nothing statrt at "+timeH)
   }else{

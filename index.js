@@ -3,12 +3,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { dialogflow } = require('actions-on-google')
 
+var chanel13Cache = null
+var chanel13CacheDate = new Date()
+
 const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
-  conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21"))
-  get13(conv,"21")
+  conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21") +"\nand on chanel 13 "+get13("21"))
 })
 
 app.intent('whats at', (conv, {time}) => {
@@ -50,8 +52,8 @@ function get12PrimeTime(timeH) {
   }
 }
 
-function get13(conv,timeH) {
-const curl = new (require( 'curl-request' ))();
+function refresh13cache(){
+  const curl = new (require( 'curl-request' ))();
  
 curl.setHeaders([
     'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
@@ -65,16 +67,28 @@ curl.setHeaders([
   data = data.substring(data.indexOf("\"0\"")+4)
   data = data.substring(0,data.indexOf("\"1\"")-1)
   
-  const dataJson = JSON.parse(data)
+  chanel13Cache = JSON.parse(data)
+  chanel13CacheDate = new Date();
+  
+})
+.catch((e) => {
+    console.log(e);
+});
+}
+function get13(timeH) {
 
   var today = new Date();
+  var diffDays = Math.floor((today - chanel13CacheDate) / 86400000); // days
+  if(difDays>1 || chanel13Cache == null){
+    refresh13cache()
+  }
   var dayNow = today.getUTCDate();
   var retValue = ""
-  for (var i = 0; i < dataJson.broadcastDayList.length; i++){
-    if(dataJson.broadcastDayList[i].shortDate.startsWith(dayNow)){
-      for (var x = 0; x < dataJson.broadcastDayList[i].shows.length; x++){
+  for (var i = 0; i < chanel13Cache.broadcastDayList.length; i++){
+    if(chanel13Cache.broadcastDayList[i].shortDate.startsWith(dayNow)){
+      for (var x = 0; x < chanel13Cache.broadcastDayList[i].shows.length; x++){
         if(dataJson.broadcastDayList[i].shows[x].start_time.startsWith(timeH)){
-          retValue += dataJson.broadcastDayList[i].shows[x].title+" will start at "+dataJson.broadcastDayList[i].shows[x].start_time+".\n"
+          retValue += chanel13Cache.broadcastDayList[i].shows[x].title+" will start at "+chanel13Cache.broadcastDayList[i].shows[x].start_time+".\n"
         }
       }
     }
@@ -82,14 +96,12 @@ curl.setHeaders([
     
   console.log(retValue)
   if(retValue.length==0){
-    conv.ask( "nothing statrt at "+timeH)
+    if(chanel13Cache == null){
+      return "we are geting data"
+    }
+    return "nothing statrt at "+timeH
   }else{
-    conv.ask(retValue)
+    creturn retValue
   }
-  
-})
-.catch((e) => {
-    console.log(e);
-});
 
 }

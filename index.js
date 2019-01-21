@@ -3,7 +3,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { dialogflow } = require('actions-on-google')
 
-const app = dialogflow()
+const app = dialogflow({
+  debug: true,
+})
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('get', conv => {
@@ -11,15 +13,15 @@ app.intent('get', conv => {
   conv.ask('on cahnel 12 '+get12PrimeTime("21"))
 })
 
-app.intent('whats at', (conv, { time }) => {
-  conv.ask(`today on prime time.\n`)
+app.intent('whats at', (conv, {time}) => {
+  conv.ask(`today at ${time}.\n`)
   conv.ask('on cahnel 12 '+get12PrimeTime(time))
 })
 
 app.intent('Default Welcome Intent', conv => {
   conv.ask(`hi this is israel tv guide`)
 })
-app.intent('Default Fallback Intent', conv => {
+app.fallback((conv) => {
   conv.ask(`like a cow, what do you want?`);
 })
 

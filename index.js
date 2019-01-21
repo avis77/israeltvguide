@@ -52,7 +52,7 @@ function get12PrimeTime(timeH) {
 
 function get13(timeH) {
   var request = require('sync-request');
-  var result = request('GET','https://reshet.tv/general/tv-guide/');
+  var result = request('GET','http://reshet.tv/general/tv-guide/');
   var data = result.body.toString('utf-8');
   console.log(data)
   var startIndex = data.indexOf("data_query = {")+12

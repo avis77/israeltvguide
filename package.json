@@ -15,7 +15,7 @@
     "firebase-functions": "^2.0.2",
     "dialogflow": "^0.6.0",
     "dialogflow-fulfillment": "^0.5.0",
-    "node-libcurl": "1.1.1"
+    "node-libcurl": "^1.1.1"
   },
   "devDependencies": {
   },

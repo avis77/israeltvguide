@@ -70,11 +70,11 @@ curl.setHeaders([
   var today = new Date();
   var dayNow = today.getUTCDate();
 
-  for (var i = 0; i < data.broadcastDayList.length; i++){
-    if(data.broadcastDayList[i].shortDate.startsWith(dayNow)){
-      for (var x = 0; x < data.broadcastDayList[i].shows.length; x++){
-        if(data.broadcastDayList[i].shows[x].start_time.startsWith(timeH)){
-          retValue += data.broadcastDayList[i].shows[x].title+" will start at "+data.broadcastDayList[i].shows[x].start_time+".\n"
+  for (var i = 0; i < dataJson.broadcastDayList.length; i++){
+    if(dataJson.broadcastDayList[i].shortDate.startsWith(dayNow)){
+      for (var x = 0; x < dataJson.broadcastDayList[i].shows.length; x++){
+        if(dataJson.broadcastDayList[i].shows[x].start_time.startsWith(timeH)){
+          retValue += dataJson.broadcastDayList[i].shows[x].title+" will start at "+dataJson.broadcastDayList[i].shows[x].start_time+".\n"
         }
       }
     }

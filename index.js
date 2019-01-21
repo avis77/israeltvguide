@@ -8,7 +8,12 @@ express().use(bodyParser.json(), app).listen(port)
 
 app.intent('get', conv => {
   conv.ask(`today on prime time.\n`)
-  conv.ask('on cahnel 12 '+pet12PrimeTime("21"))
+  conv.ask('on cahnel 12 '+get12PrimeTime("21"))
+})
+
+app.intent('get at', conv => {
+  conv.ask(`today on prime time.\n`)
+  conv.ask('on cahnel 12 '+get12PrimeTime("21"))
 })
 
 app.intent('Default Welcome Intent', conv => {

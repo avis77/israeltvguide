@@ -60,8 +60,8 @@ curl.setHeaders([
 .then(({statusCode, body, headers}) => {
 //     console.log(statusCode, body, headers)\
   var startIndex = body.indexOf("data_query = {")+12
-  data = body.substring(startIndex)
-  var endIndex = data.indexOf(";")+12
+  var data = body.substring(startIndex)
+  var endIndex = data.indexOf(";")-1
   data = data.substring(0,endIndex)
   console.log(data)
   const dataJson = JSON.parse(data)

@@ -30,10 +30,7 @@ app.fallback((conv) => {
     refresh13cache()
   }
 
-  conv.ask('kapara, what do you want?');
-  conv.ask('command that i know are');
-  conv.ask('whats on prime time');
-  conv.ask('whats at ');
+  conv.ask('kapara, what do you want?\ncommand that i know are:\nwhats on prime time.\n\nwhats at number.');
 })
 
 

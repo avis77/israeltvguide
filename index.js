@@ -24,6 +24,12 @@ app.intent('Default Welcome Intent', conv => {
   conv.ask('hi this is israel tv guide')
 })
 app.fallback((conv) => {
+  var today = new Date();
+  var diffDays = Math.floor((today - chanel13CacheDate) / 86400000); // days
+  if(diffDays>1 || chanel13Cache == null){
+    refresh13cache()
+  }
+
   conv.ask('kapara, what do you want?');
   conv.ask('command that i know are');
   conv.ask('whats on prime time');

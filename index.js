@@ -17,7 +17,7 @@ app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
     time = "0"+time
   }
-  conv.ask("today at "+time+".\non cahnel 12 "+get12PrimeTime(time))
+  conv.ask("today at "+time+".\non cahnel 12 "+get12PrimeTime(time) +"\nand on chanel 13 "+get13(time))
 })
 
 app.intent('Default Welcome Intent', conv => {

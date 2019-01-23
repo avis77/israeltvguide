@@ -10,14 +10,14 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
-  conv.ask('<p><s>today on prime time.<\s><s>on cahnel 12 '+get12PrimeTime("21") +"</s><s>and on chanel 13 "+get13("21")+"<\s><\p>")
+  conv.ask('<speak><p><s>today on prime time.<\s><s>on cahnel 12 '+get12PrimeTime("21") +'</s><s>and on chanel 13 '+get13("21")+'<\s><\p><\speak>')
 })
 
 app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
     time = "0"+time
   }
-  conv.ask("<p><s>today at "+time+".<\s><s>on cahnel 12 "+get12PrimeTime(time) +"<\s><s>and on chanel 13 "+get13(time)+"<\s><\p>")
+  conv.ask('<speak><p><s>today at "+time+".<\s><s>on cahnel 12 '+get12PrimeTime(time) +'<\s><s>and on chanel 13 '+get13(time)+'<\s><\p><\speak>')
 })
 
 app.intent('Default Welcome Intent', conv => {
@@ -30,7 +30,7 @@ app.fallback((conv) => {
     refresh13cache()
   }
 
-  conv.ask('<p><s>kapara, what do you want?<\s><s>command that i know are:<\s><s>whats on prime time.<\s><s>whats at number.<\s><\p>');
+  conv.ask('<speak><p><s>kapara, what do you want?<\s><s>command that i know are:<\s><s>whats on prime time.<\s><s>whats at number.<\s><\p><\speak>');
 })
 
 
@@ -44,7 +44,7 @@ function get12PrimeTime(timeH) {
   for (var i = 0; i < data.programs.length; i++){
     if(data.programs[i].day=== "הערב"){
       if(data.programs[i].DisplayStartTime.startsWith(timeH)){
-        retValue += data.programs[i].EnglishName+" will start at "+data.programs[i].DisplayStartTime+".<\s><s>"
+        retValue += data.programs[i].EnglishName+' will start at '+data.programs[i].DisplayStartTime+'.<\s><s>'
       }
     }
   }
@@ -103,7 +103,7 @@ function get13(timeH) {
     if(chanel13Cache == null){
       return "we are geting data"
     }
-    return "nothing statrt at "+timeH+"<\s><s>"
+    return "nothing statrt at "+timeH+'<\s><s>'
   }else{
     return retValue
   }

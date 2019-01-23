@@ -10,14 +10,14 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
-  conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21") +"\nand on chanel 13 "+get13("21"))
+  conv.ask('<p><s>today on prime time.<\s><s>on cahnel 12 '+get12PrimeTime("21") +"</s><s>and on chanel 13 "+get13("21")+"<\s><\p>")
 })
 
 app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
     time = "0"+time
   }
-  conv.ask("today at "+time+".\non cahnel 12 "+get12PrimeTime(time) +"\nand on chanel 13 "+get13(time))
+  conv.ask("<p><s>today at "+time+".<\s><s>on cahnel 12 "+get12PrimeTime(time) +"<\s><s>and on chanel 13 "+get13(time)+"<\s><\p>")
 })
 
 app.intent('Default Welcome Intent', conv => {
@@ -30,7 +30,7 @@ app.fallback((conv) => {
     refresh13cache()
   }
 
-  conv.ask('kapara, what do you want?\ncommand that i know are:\nwhats on prime time.\n\nwhats at number.');
+  conv.ask('<p><s>kapara, what do you want?<\s><s>command that i know are:<\s><s>whats on prime time.<\s><s>whats at number.<\s><\p>');
 })
 
 
@@ -44,12 +44,12 @@ function get12PrimeTime(timeH) {
   for (var i = 0; i < data.programs.length; i++){
     if(data.programs[i].day=== "הערב"){
       if(data.programs[i].DisplayStartTime.startsWith(timeH)){
-        retValue += data.programs[i].EnglishName+" will start at "+data.programs[i].DisplayStartTime+".\n"
+        retValue += data.programs[i].EnglishName+" will start at "+data.programs[i].DisplayStartTime+".<\s><s>"
       }
     }
   }
   if(retValue.length==0){
-    return "nothing statrt at "+timeH
+    return "nothing statrt at "+timeH+"<\s><s>"
   }else{
     return retValue
   }
@@ -92,7 +92,7 @@ function get13(timeH) {
       if(chanel13Cache.broadcastDayList[i].shortDate.startsWith(dayNow)){
         for (var x = 0; x < chanel13Cache.broadcastDayList[i].shows.length; x++){
           if(chanel13Cache.broadcastDayList[i].shows[x].start_time.startsWith(timeH)){
-            retValue += chanel13Cache.broadcastDayList[i].shows[x].title+" will start at "+chanel13Cache.broadcastDayList[i].shows[x].start_time+".\n"
+            retValue += chanel13Cache.broadcastDayList[i].shows[x].title+" will start at "+chanel13Cache.broadcastDayList[i].shows[x].start_time+".<\s><s>"
           }
         }
       }
@@ -103,7 +103,7 @@ function get13(timeH) {
     if(chanel13Cache == null){
       return "we are geting data"
     }
-    return "nothing statrt at "+timeH
+    return "nothing statrt at "+timeH+"<\s><s>"
   }else{
     return retValue
   }

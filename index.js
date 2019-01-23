@@ -92,7 +92,7 @@ function get13(timeH) {
       if(chanel13Cache.broadcastDayList[i].shortDate.startsWith(dayNow)){
         for (var x = 0; x < chanel13Cache.broadcastDayList[i].shows.length; x++){
           if(chanel13Cache.broadcastDayList[i].shows[x].start_time.startsWith(timeH)){
-            retValue += chanel13Cache.broadcastDayList[i].shows[x].title+" will start at "+chanel13Cache.broadcastDayList[i].shows[x].start_time+".<\s><s>"
+            retValue += chanel13Cache.broadcastDayList[i].shows[x].title+" will start at "+chanel13Cache.broadcastDayList[i].shows[x].start_time
           }
         }
       }

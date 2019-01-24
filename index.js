@@ -10,14 +10,14 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
-  conv.add('today on prime time.\non cahnel 12 '+get12PrimeTime("21") +'\nand on chanel 13 '+get13("21"))
+  conv.add('today on prime time.\non cahnel 12 '+get12PrimeTime("21") +'\nand on chanel 13 '+get13("21")+"\nany thing else?")
 })
 
 app.intent('whats at', (conv, {time}) => {
   if(time.length==1){
     time = "0"+time
   }
-  conv.add('today at '+time+'.\non cahnel 12 '+get12PrimeTime(time) +'\nand on chanel 13 '+get13(time))
+  conv.add('today at '+time+'.\non cahnel 12 '+get12PrimeTime(time) +'\nand on chanel 13 '+get13(time)+"\nany thing else?")
 })
 
 app.intent('Default Welcome Intent', conv => {

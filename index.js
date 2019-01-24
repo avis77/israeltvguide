@@ -10,7 +10,7 @@ const app = dialogflow()
 express().use(bodyParser.json(), app).listen(port)
 
 app.intent('whats on prime time', conv => {
-  conv.ask('today on prime time.\non cahnel 12 '+get12PrimeTime("21") +'\nand on chanel 13 '+get13("21"))
+  conv.add('today on prime time.\non cahnel 12 '+get12PrimeTime("21") +'\nand on chanel 13 '+get13("21"))
 })
 
 app.intent('whats at', (conv, {time}) => {
